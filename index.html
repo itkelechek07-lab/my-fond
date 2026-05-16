@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta id="metaDesc" name="description" content="Помощник СоцФонда — онлайн-услуги социального фонда: заявки, запись, статус, документы, AI-консультант." />
+  <title>Помощник СоцФонда</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-bg" aria-hidden="true">
+    <span class="app-bg__blob app-bg__blob--1"></span>
+    <span class="app-bg__blob app-bg__blob--2"></span>
+  </div>
+
+  <a href="#main" class="skip-link" data-i18n="skip_link">Перейти к содержимому</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#home" class="logo" data-nav="home">
+        <i class="fa-solid fa-hand-holding-heart logo__icon" aria-hidden="true"></i>
+        <span data-i18n="logo_text">Помощник СоцФонда</span>
+      </a>
+      <div class="lang-switch" role="group" aria-label="" data-i18n-aria-label="lang_switch_aria">
+        <button type="button" class="lang-switch__btn lang-switch__btn--active" data-lang="ru" id="langRu" aria-pressed="true" title="Русский">RU</button>
+        <button type="button" class="lang-switch__btn" data-lang="ky" id="langKy" aria-pressed="false" title="Кыргызча">KY</button>
+        <button type="button" class="lang-switch__btn" data-lang="en" id="langEn" aria-pressed="false" title="English">EN</button>
+      </div>
+      <button type="button" class="nav-toggle" id="navToggle" data-i18n-aria-label="nav_toggle_aria" aria-label="Меню" aria-expanded="false" aria-controls="mainNav"></button>
+      <nav class="nav" id="mainNav" data-i18n-aria-label="nav_main_aria" aria-label="Основная навигация">
+        <a href="#home" data-nav="home" data-i18n="nav_home">Главная</a>
+        <a href="#cabinet" data-nav="cabinet" data-i18n="nav_cabinet">Личный кабинет</a>
+        <a href="#calculator" data-nav="calculator" data-i18n="nav_calculator">Калькулятор</a>
+        <a href="#booking" data-nav="booking" data-i18n="nav_booking">Запись</a>
+        <a href="#status" data-nav="status" data-i18n="nav_status">Статус</a>
+        <a href="#documents" data-nav="documents" data-i18n="nav_documents">Документы</a>
+        <a href="#ai" data-nav="ai" data-i18n="nav_ai">AI-консультант</a>
+        <a href="#admin" data-nav="admin" data-i18n="nav_admin">Админ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Главная -->
+    <section id="home" class="section section--active" aria-labelledby="home-title">
+      <div class="container">
+        <div class="hero">
+          <p class="hero__badge" data-i18n="hero_badge">MVP+ · Социальный фонд</p>
+          <h1 id="home-title" data-i18n="hero_title">Услуги Социального фонда онлайн</h1>
+          <p class="hero__lead" data-i18n="hero_lead">
+            Проверьте заявку, запишитесь на приём, узнайте список документов или задайте вопрос AI-помощнику — в одном окне.
+          </p>
+          <div class="hero__actions">
+            <button type="button" class="btn btn--primary" data-nav="status">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <span data-i18n="btn_check_status">Проверить статус заявки</span>
+            </button>
+            <button type="button" class="btn btn--secondary" data-nav="booking">
+              <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
+              <span data-i18n="btn_book">Записаться на приём</span>
+            </button>
+            <button type="button" class="btn btn--outline" data-nav="documents">
+              <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+              <span data-i18n="btn_docs">Узнать список документов</span>
+            </button>
+            <button type="button" class="btn btn--outline" data-nav="calculator">
+              <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+              <span data-i18n="btn_calculator">Калькулятор пенсии</span>
+            </button>
+            <button type="button" class="btn btn--outline" data-nav="ai">
+              <i class="fa-solid fa-robot" aria-hidden="true"></i>
+              <span data-i18n="btn_ai_q">Задать вопрос (AI)</span>
+            </button>
+          </div>
+          <div class="hero__cards">
+            <article class="mini-card">
+              <i class="fa-solid fa-id-card mini-card__icon" aria-hidden="true"></i>
+              <h3 data-i18n="mini_cabinet_h">Личный кабинет</h3>
+              <p data-i18n="mini_cabinet_p">Вход по имени — ваши заявки и история.</p>
+              <button type="button" class="btn btn--link" data-nav="cabinet"><span data-i18n="mini_cabinet_btn">Открыть →</span></button>
+            </article>
+            <article class="mini-card">
+              <i class="fa-solid fa-users-line mini-card__icon" aria-hidden="true"></i>
+              <h3 data-i18n="mini_queue_h">Электронная очередь</h3>
+              <p data-i18n="mini_queue_p">Все записи и место в очереди — в разделе «Статус».</p>
+              <button type="button" class="btn btn--link" data-nav="status"><span data-i18n="mini_queue_btn">Перейти →</span></button>
+            </article>
+            <article class="mini-card">
+              <i class="fa-solid fa-piggy-bank mini-card__icon" aria-hidden="true"></i>
+              <h3 data-i18n="mini_savings_h">Пенсионные накопления</h3>
+              <p data-i18n="mini_savings_p">Баланс и история взносов в личном кабинете.</p>
+              <button type="button" class="btn btn--link" data-nav="cabinet" data-cabinet-tab="savings"><span data-i18n="mini_savings_btn">Открыть →</span></button>
+            </article>
+            <article class="mini-card">
+              <i class="fa-solid fa-briefcase mini-card__icon" aria-hidden="true"></i>
+              <h3 data-i18n="mini_experience_h">Трудовой стаж</h3>
+              <p data-i18n="mini_experience_p">Периоды работы и общий стаж.</p>
+              <button type="button" class="btn btn--link" data-nav="cabinet" data-cabinet-tab="experience"><span data-i18n="mini_experience_btn">Открыть →</span></button>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Личный кабинет -->
+    <section id="cabinet" class="section" hidden aria-labelledby="cabinet-title">
+      <div class="container">
+        <h2 id="cabinet-title"><i class="fa-solid fa-user" aria-hidden="true"></i> <span data-i18n="cabinet_h2">Личный кабинет</span></h2>
+        <p class="section__desc" data-i18n="cabinet_desc">Войдите по имени, чтобы видеть свои заявки. Регистрация не требуется — имя используется как «логин» на этом устройстве.</p>
+
+        <div id="cabinetLogin" class="card card--narrow">
+          <h3 class="card__title" data-i18n="login_h3">Вход</h3>
+          <label class="label" for="loginName" data-i18n="login_name_lbl">Ваше имя</label>
+          <input type="text" id="loginName" class="input" data-i18n-placeholder="login_name_ph" placeholder="Например: Айгуль Асанова" autocomplete="name" />
+          <button type="button" class="btn btn--primary" id="btnLogin" data-i18n="btn_enter">Войти</button>
+        </div>
+
+        <div id="cabinetDashboard" class="card" hidden>
+          <div class="cabinet__head">
+            <p><span data-i18n="cabinet_greet_start">Здравствуйте,</span> <strong id="cabinetUserName"></strong><span data-i18n="cabinet_greet_end">!</span></p>
+            <button type="button" class="btn btn--outline btn--sm" id="btnLogout" data-i18n="btn_logout">Выйти</button>
+          </div>
+          <h3 class="card__title" data-i18n="my_applications_h3">Мои заявки</h3>
+          <p class="section__desc cabinet__hint" data-i18n="cabinet_list_hint">
+            Ниже — все ваши записи: номер заявки, имя, услуга, дата и время приёма, место в общей электронной очереди (демо) и статус обработки.
+          </p>
+          <div id="cabinetList" class="table-wrap"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Онлайн запись -->
+    <section id="booking" class="section" hidden aria-labelledby="booking-title">
+      <div class="container">
+        <h2 id="booking-title"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> <span data-i18n="booking_title">Подать заявку / запись на приём</span></h2>
+        <p class="section__desc" data-i18n="booking_desc">Все поля обязательны. После отправки вы получите уникальный номер заявки.</p>
+        <form id="bookingForm" class="card card--narrow">
+          <label class="label" for="bfName" data-i18n="bf_name">Имя</label>
+          <input type="text" id="bfName" class="input" required data-i18n-placeholder="bf_name_ph" placeholder="ФИО" autocomplete="name" />
+
+          <label class="label" for="bfService" data-i18n="bf_service">Услуга</label>
+          <select id="bfService" class="input" required>
+            <option value="" data-i18n="ph_select">— Выберите —</option>
+            <option value="pension" data-i18n="svc_pension">Пенсия</option>
+            <option value="benefit" data-i18n="svc_benefit">Пособие</option>
+            <option value="certificate" data-i18n="svc_cert">Справка</option>
+            <option value="consult" data-i18n="svc_consult">Консультация</option>
+          </select>
+
+          <div id="bookingStaffInfo" class="booking-staff" hidden>
+            <p class="booking-staff__row">
+              <span class="booking-staff__lbl" data-i18n="booking_lbl_cabinet">Кабинет / окно:</span>
+              <span id="bookingStaffCabinet" class="booking-staff__val"></span>
+            </p>
+            <p class="booking-staff__row">
+              <span class="booking-staff__lbl" data-i18n="booking_lbl_employee">Специалист:</span>
+              <span id="bookingStaffName" class="booking-staff__val"></span>
+            </p>
+          </div>
+
+          <label class="label" for="bfDate" data-i18n="bf_date">Дата</label>
+          <input type="date" id="bfDate" class="input" required />
+
+          <p class="booking-time-hint section__desc" data-i18n="booking_time_hint">Время приёма: с 08:30 до 17:00.</p>
+          <label class="label" for="bfTime" data-i18n="bf_time">Время</label>
+          <input type="time" id="bfTime" class="input" required min="08:30" max="17:00" step="300" />
+
+          <button type="submit" class="btn btn--primary" data-i18n="btn_submit_app">Отправить заявку</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 4. Статус заявки + общая очередь -->
+    <section id="status" class="section" hidden aria-labelledby="status-title">
+      <div class="container">
+        <h2 id="status-title"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> <span data-i18n="status_title">Проверка статуса заявки</span></h2>
+        <p class="section__desc" data-i18n="status_desc">Ниже — полный список всех в очереди. Для одной заявки введите номер: SF-2026-1234 или 4 цифры.</p>
+
+        <div class="card status-queue-board">
+          <div class="status-queue-board__head">
+            <h3 class="card__title"><i class="fa-solid fa-users-line" aria-hidden="true"></i> <span data-i18n="status_all_queue_title">Электронная очередь</span></h3>
+            <p id="statusQueueCount" class="status-queue-count" aria-live="polite"></p>
+          </div>
+          <p class="section__desc status-queue-board__desc" data-i18n="status_all_queue_desc">
+            Все оформленные заявки в порядке даты и времени приёма (демо).
+          </p>
+          <div id="statusQueueList" class="table-wrap table-wrap--status-queue"></div>
+        </div>
+
+        <div class="card card--narrow status-lookup-card">
+          <label class="label" for="statusId" data-i18n="status_id_lbl">Номер заявки</label>
+          <div class="input-row">
+            <input type="text" id="statusId" class="input" data-i18n-placeholder="status_id_ph" placeholder="SF-2026-1234" autocomplete="off" />
+            <button type="button" class="btn btn--primary" id="btnStatusCheck" data-i18n="btn_find">Найти</button>
+          </div>
+          <div id="statusResult" class="status-result" role="region" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Документы (wizard) -->
+    <section id="documents" class="section" hidden aria-labelledby="documents-title">
+      <div class="container">
+        <h2 id="documents-title"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> <span data-i18n="documents_title">Список документов</span></h2>
+        <p class="section__desc" data-i18n="documents_desc">Выберите тип услуги — мы покажем документы по шагам.</p>
+
+        <div class="card wizard">
+          <ol class="wizard__steps" data-i18n-aria-label="wizard_steps_aria" aria-label="Шаги">
+            <li class="wizard__step active" data-wstep="1"><span>1</span> <span data-i18n="wiz_step_1">Тип</span></li>
+            <li class="wizard__step" data-wstep="2"><span>2</span> <span data-i18n="wiz_step_2">Список</span></li>
+            <li class="wizard__step" data-wstep="3"><span>3</span> <span data-i18n="wiz_step_3">Советы</span></li>
+          </ol>
+
+          <div class="wizard__panel active" id="wPanel1">
+            <label class="label" for="wType" data-i18n="w_type_lbl">Тип услуги</label>
+            <select id="wType" class="input">
+              <option value="" data-i18n="ph_select">— Выберите —</option>
+              <option value="pension" data-i18n="svc_pension">Пенсия</option>
+              <option value="benefit" data-i18n="svc_benefit">Пособие</option>
+              <option value="certificate" data-i18n="svc_cert">Справка</option>
+            </select>
+            <div class="wizard__actions">
+              <button type="button" class="btn btn--primary" id="wNext1" disabled data-i18n="w_next">Далее</button>
+            </div>
+          </div>
+
+          <div class="wizard__panel" id="wPanel2" hidden>
+            <h3 class="wizard__subtitle" id="wDocTitle" data-i18n="w_docs_h">Документы</h3>
+            <ul class="doc-list" id="wDocList"></ul>
+            <div class="wizard__actions">
+              <button type="button" class="btn btn--outline" id="wBack2" data-i18n="w_back">Назад</button>
+              <button type="button" class="btn btn--primary" id="wNext2" data-i18n="w_next">Далее</button>
+            </div>
+          </div>
+
+          <div class="wizard__panel" id="wPanel3" hidden>
+            <h3 class="wizard__subtitle" data-i18n="w_before_h">Перед визитом</h3>
+            <ul class="doc-list" id="wTipsList"></ul>
+            <div class="wizard__actions">
+              <button type="button" class="btn btn--outline" id="wBack3" data-i18n="w_back">Назад</button>
+              <button type="button" class="btn btn--primary" data-nav="booking" data-i18n="w_book_btn">Записаться</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. AI-консультант -->
+    <section id="ai" class="section" hidden aria-labelledby="ai-title">
+      <div class="container">
+        <h2 id="ai-title"><i class="fa-solid fa-robot" aria-hidden="true"></i> <span data-i18n="ai_title">AI-консультант</span></h2>
+        <p class="section__desc" data-i18n="ai_desc">Вопросы о социальном фонде КР. Ответы носят справочный характер.</p>
+        <div class="card chat">
+          <div id="chatMessages" class="chat__messages" role="log" aria-live="polite"></div>
+          <div id="chatLoading" class="chat__loading" hidden><span class="loading-dots"></span> <span data-i18n="chat_loading">Загрузка...</span></div>
+          <div class="chat__chips">
+            <button type="button" class="chip" data-i18n-q="chip_q1">Как оформить пенсию?</button>
+            <button type="button" class="chip" data-i18n-q="chip_q2">Документы для пособия</button>
+            <button type="button" class="chip" data-i18n-q="chip_q3">Статус заявки</button>
+          </div>
+          <div class="chat__input-row">
+            <input type="text" id="chatInput" class="input" data-i18n-placeholder="chat_ph" placeholder="Ваш вопрос..." maxlength="2000" autocomplete="off" />
+            <button type="button" class="btn btn--primary" id="chatSend" data-i18n="chat_send">Отправить</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Админ -->
+    <section id="admin" class="section" hidden aria-labelledby="admin-title">
+      <div class="container">
+        <h2 id="admin-title"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> <span data-i18n="admin_title">Админ-панель</span></h2>
+        <p class="section__desc" data-i18n="admin_desc">Просмотр заявок и смена статуса. Доступ по паролю (демо).</p>
+
+        <div id="adminGate" class="card card--narrow">
+          <label class="label" for="adminPass" data-i18n="admin_pass_lbl">Пароль администратора</label>
+          <input type="password" id="adminPass" class="input" data-i18n-placeholder="admin_pass_ph" placeholder="Демо: admin" autocomplete="off" />
+          <button type="button" class="btn btn--primary" id="btnAdminLogin" data-i18n="admin_enter">Войти</button>
+        </div>
+
+        <div id="adminPanel" hidden>
+          <div class="admin-toolbar card">
+            <label class="label" for="adminFilter" data-i18n="admin_filter_lbl">Фильтр по услуге</label>
+            <select id="adminFilter" class="input input--inline">
+              <option value="" data-i18n="admin_all_svc">Все услуги</option>
+              <option value="pension" data-i18n="svc_pension">Пенсия</option>
+              <option value="benefit" data-i18n="svc_benefit">Пособие</option>
+              <option value="certificate" data-i18n="svc_cert">Справка</option>
+              <option value="consult" data-i18n="svc_consult">Консультация</option>
+            </select>
+            <button type="button" class="btn btn--outline" id="btnAdminRefresh" data-i18n="admin_refresh">Обновить</button>
+          </div>
+          <div id="adminTableWrap" class="card table-wrap"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__brand"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> <span data-i18n="footer_brand">Помощник СоцФонда</span></span>
+      <p class="footer__note" data-i18n="footer_note">Учебный MVP+. Данные в браузере (LocalStorage).</p>
+      <p class="footer__copy" data-i18n="footer_copy">© 2026</p>
+    </div>
+  </footer>
+
+  <!-- Модальное окно: успешная заявка -->
+  <div id="bookingSuccessModal" class="modal" role="presentation" hidden>
+    <div class="modal__backdrop" id="bookingModalBackdrop" aria-hidden="true"></div>
+    <div
+      class="modal__dialog card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="bookingModalTitle"
+      aria-describedby="bookingModalText bookingModalStaff"
+    >
+      <div class="modal__icon-wrap" aria-hidden="true">
+        <i class="fa-solid fa-circle-check modal__icon"></i>
+      </div>
+      <h3 id="bookingModalTitle" class="modal__title" data-i18n="booking_modal_title">Заявка создана</h3>
+      <p id="bookingModalText" class="modal__text"></p>
+      <p id="bookingModalStaff" class="modal__text modal__text--staff" hidden></p>
+      <button type="button" class="btn btn--primary modal__btn" id="bookingModalClose" data-i18n="booking_modal_btn">Понятно</button>
+    </div>
+  </div>
+
+  <div id="toastRoot" class="toast-root" aria-live="polite"></div>
+  <div id="globalLoader" class="global-loader" hidden aria-hidden="true">
+    <div class="global-loader__spinner"></div>
+  </div>
+
+  <script src="booking-catalog.js"></script>
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
+  <script src="portal-ext.js"></script>
+</body>
+</html>
