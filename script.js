@@ -2,7 +2,7 @@
  * script.js — «Помощник СоцФонда» MVP+
  *
  * Хранение: LocalStorage (ключ socfond_mvp_applications).
- * Язык интерфейса: LocalStorage (ключ socfond_mvp_lang): ru | ky | en
+ * Язык интерфейса: LocalStorage (ключ socfond_mvp_lang): ru | ky
  */
 
 (function () {
@@ -268,6 +268,8 @@
       nav_toggle_aria: 'Меню',
       nav_main_aria: 'Основная навигация',
       lang_switch_aria: 'Язык интерфейса',
+      lang_ru_label: 'Русский',
+      lang_ky_label: 'Кыргызча',
       nav_home: 'Главная',
       nav_cabinet: 'Личный кабинет',
       nav_booking: 'Запись',
@@ -506,6 +508,8 @@
       nav_toggle_aria: 'Меню',
       nav_main_aria: 'Негизги навигация',
       lang_switch_aria: 'Интерфейстин тили',
+      lang_ru_label: 'Орусча',
+      lang_ky_label: 'Кыргызча',
       nav_home: 'Башкы бет',
       nav_cabinet: 'Жеке кабинет',
       nav_booking: 'Катталуу',
@@ -974,7 +978,7 @@
   (function mergeBookingCatalog() {
     var cat = typeof SocFondBookingCatalog !== 'undefined' ? SocFondBookingCatalog : null;
     if (!cat || !cat.BOOKING_CATALOG_I18N) return;
-    ['ru', 'ky', 'en'].forEach(function (lang) {
+    ['ru', 'ky'].forEach(function (lang) {
       if (TRANSLATIONS[lang] && cat.BOOKING_CATALOG_I18N[lang]) {
         Object.assign(TRANSLATIONS[lang], cat.BOOKING_CATALOG_I18N[lang]);
       }
@@ -993,13 +997,17 @@
   function getLang() {
     try {
       var v = localStorage.getItem(STORAGE_LANG);
-      if (v === 'ru' || v === 'ky' || v === 'en') return v;
+      if (v === 'en') {
+        localStorage.setItem(STORAGE_LANG, 'ru');
+        return 'ru';
+      }
+      if (v === 'ru' || v === 'ky') return v;
     } catch (e) {}
     return 'ru';
   }
 
   function setLang(lang) {
-    if (lang !== 'ru' && lang !== 'ky' && lang !== 'en') lang = 'ru';
+    if (lang !== 'ru' && lang !== 'ky') lang = 'ru';
     try {
       localStorage.setItem(STORAGE_LANG, lang);
     } catch (e) {}
@@ -1218,9 +1226,13 @@
     if (meta) meta.setAttribute('content', t('page_meta_description'));
 
     document.querySelectorAll('.lang-switch__btn').forEach(function (btn) {
-      var isThis = btn.getAttribute('data-lang') === lang;
+      var btnLang = btn.getAttribute('data-lang');
+      var isThis = btnLang === lang;
       btn.classList.toggle('lang-switch__btn--active', isThis);
       btn.setAttribute('aria-pressed', isThis ? 'true' : 'false');
+      if (btnLang === 'ru' || btnLang === 'ky') {
+        btn.setAttribute('title', t('lang_' + btnLang + '_label'));
+      }
     });
 
     fillBookingCatalogs();
@@ -1636,22 +1648,41 @@
           ahead: String(q.ahead),
           min: String(q.waitMin),
         });
+      var dlCab = function (key) {
+        return ' data-label="' + escapeHtml(t(key)) + '"';
+      };
       html +=
-        '<tr><td><code class="app-id">' +
+        '<tr><td' +
+        dlCab('th_number') +
+        '><code class="app-id">' +
         escapeHtml(a.id) +
-        '</code></td><td>' +
+        '</code></td><td' +
+        dlCab('th_name') +
+        '>' +
         escapeHtml(a.name) +
-        '</td><td>' +
+        '</td><td' +
+        dlCab('th_service') +
+        '>' +
         escapeHtml(serviceLabel(a.service)) +
-        '</td><td>' +
+        '</td><td' +
+        dlCab('th_cabinet') +
+        '>' +
         escapeHtml(a.cabinet || '—') +
-        '</td><td>' +
+        '</td><td' +
+        dlCab('th_specialist') +
+        '>' +
         escapeHtml(a.staffName || '—') +
-        '</td><td>' +
+        '</td><td' +
+        dlCab('th_date') +
+        '>' +
         escapeHtml(a.date) +
-        '</td><td>' +
+        '</td><td' +
+        dlCab('th_time') +
+        '>' +
         escapeHtml(a.time) +
-        '</td><td class="cabinet-queue-cell">' +
+        '</td><td class="cabinet-queue-cell"' +
+        dlCab('th_queue') +
+        '>' +
         (q
           ? '<span class="cabinet-queue__main">' +
             escapeHtml(qMain) +
@@ -1659,11 +1690,15 @@
             escapeHtml(qSub) +
             '</span>'
           : '<span class="cabinet-queue__main">—</span>') +
-        '</td><td><span class="' +
+        '</td><td' +
+        dlCab('th_status') +
+        '><span class="' +
         statusClass(a.status) +
         '">' +
         escapeHtml(statusLabel(a.status)) +
-        '</span></td><td><button type="button" class="btn btn--outline btn--sm" data-del="' +
+        '</span></td><td' +
+        dlCab('th_action') +
+        '><button type="button" class="btn btn--outline btn--sm" data-del="' +
         escapeHtml(a.id) +
         '">' +
         escapeHtml(t('btn_delete')) +
@@ -1879,8 +1914,16 @@ function setBookingStep(step) {
     var next = $('bookingBtnNext');
     var submit = $('bookingBtnSubmit');
     if (back) back.hidden = step <= 1;
-    if (next) next.hidden = step >= 4;
-    if (submit) submit.hidden = step !== 4;
+    if (next) {
+      var hideNext = step >= 4;
+      next.hidden = hideNext;
+      next.setAttribute('aria-hidden', hideNext ? 'true' : 'false');
+    }
+    if (submit) {
+      var showSubmit = step === 4;
+      submit.hidden = !showSubmit;
+      submit.setAttribute('aria-hidden', showSubmit ? 'false' : 'true');
+    }
     if (step === 3) {
       renderBookingDocsList();
       checkBookingSlot();
@@ -2251,32 +2294,59 @@ function setBookingStep(step) {
         qCell = '<span class="cabinet-queue__main">—</span>';
       }
       var hi = hiTarget && hiTarget.id === a.id;
+      var dl = function (key) {
+        return ' data-label="' + escapeHtml(t(key)) + '"';
+      };
       html +=
         '<tr class="status-queue-row' +
         (hi ? ' status-queue-row--highlight' : '') +
         '" data-app-id="' +
         escapeHtml(a.id) +
-        '"><td><strong>' +
+        '"><td' +
+        dl('th_position') +
+        ' data-pos="' +
         escapeHtml(String(pos)) +
-        '</strong></td><td><code class="app-id">' +
+        '"><strong>' +
+        escapeHtml(String(pos)) +
+        '</strong></td><td' +
+        dl('th_number') +
+        '><code class="app-id">' +
         escapeHtml(a.id) +
-        '</code></td><td>' +
+        '</code></td><td' +
+        dl('th_name') +
+        '>' +
         escapeHtml(a.name) +
-        '</td><td>' +
+        '</td><td' +
+        dl('th_service') +
+        '>' +
         escapeHtml(serviceLabel(a.service)) +
-        '</td><td class="status-queue-office">' +
+        '</td><td class="status-queue-office"' +
+        dl('th_office') +
+        '>' +
         escapeHtml(officeLabel(a.office)) +
-        '</td><td>' +
+        '</td><td' +
+        dl('th_cabinet') +
+        '>' +
         escapeHtml(a.cabinet || '—') +
-        '</td><td>' +
+        '</td><td' +
+        dl('th_specialist') +
+        '>' +
         escapeHtml(a.staffName || '—') +
-        '</td><td>' +
+        '</td><td' +
+        dl('th_date') +
+        '>' +
         escapeHtml(a.date) +
-        '</td><td>' +
+        '</td><td' +
+        dl('th_time') +
+        '>' +
         escapeHtml(a.time) +
-        '</td><td class="cabinet-queue-cell">' +
+        '</td><td class="cabinet-queue-cell"' +
+        dl('th_queue') +
+        '>' +
         qCell +
-        '</td><td><span class="' +
+        '</td><td' +
+        dl('th_status') +
+        '><span class="' +
         statusClass(a.status) +
         '">' +
         escapeHtml(statusLabel(a.status)) +

@@ -411,7 +411,8 @@
   function getLang() {
     try {
       var v = localStorage.getItem('socfond_mvp_lang');
-      if (v === 'ru' || v === 'ky' || v === 'en') return v;
+      if (v === 'en') return 'ru';
+      if (v === 'ru' || v === 'ky') return v;
     } catch (e) {}
     return 'ru';
   }
@@ -438,7 +439,7 @@
   function mergeI18n() {
     var a = api();
     if (!a.TRANSLATIONS) return;
-    ['ru', 'ky', 'en'].forEach(function (lang) {
+    ['ru', 'ky'].forEach(function (lang) {
       Object.assign(a.TRANSLATIONS[lang], EXTRA_I18N[lang]);
     });
   }
